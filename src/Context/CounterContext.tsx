@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  Dispatch,
-  ReactElement,
-  useReducer,
-} from 'react';
+import React, { createContext, ReactElement, useReducer } from 'react';
 
 interface CounterState {
   count: number;
@@ -34,6 +29,10 @@ const counterReducer: React.Reducer<CounterState, Action> = (
   action: Action
 ) => {
   switch (action.type) {
+    case 'INC_COUNTER':
+      return { count: state.count + action.payload };
+    case 'DEC_COUNTER':
+      return { count: state.count - action.payload };
     default:
       return state;
   }
