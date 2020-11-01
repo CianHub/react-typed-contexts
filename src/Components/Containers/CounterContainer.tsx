@@ -21,22 +21,22 @@ const CounterContainer: React.FC = () => {
     dispatch,
   } = useContext(CounterContext);
 
-  const updateLightTheme = useCallback(
+  const updateLightTheme: () => void = useCallback(
     () => dispatch({ type: LIGHT_MODE, payload: { theme: 'LIGHT' } }),
     [dispatch]
   );
 
-  const updateDarkTheme = useCallback(
+  const updateDarkTheme: () => void = useCallback(
     () => dispatch({ type: DARK_MODE, payload: { theme: 'DARK' } }),
     [dispatch]
   );
 
-  const memoIncCounter = useCallback(
+  const memoIncCounter: () => void = useCallback(
     () => dispatch({ type: INC_COUNTER, payload: { count: 1 } }),
     [dispatch]
   );
 
-  const memoDecCounter = useCallback(
+  const memoDecCounter: () => void = useCallback(
     () => dispatch({ type: DEC_COUNTER, payload: { count: 1 } }),
     [dispatch]
   );

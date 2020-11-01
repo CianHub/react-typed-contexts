@@ -16,12 +16,12 @@ export interface Action {
   payload: { count?: number; theme?: Theme };
 }
 
-export type ActionWithCount = {
+export interface ActionWithCount {
   type: ACTION_TYPES;
   payload: { count: number };
-};
+}
 
-export type ActionWithTheme = {
+export interface ActionWithTheme {
   type: ACTION_TYPES;
   payload: { theme: Theme };
-};
+}
