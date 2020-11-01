@@ -2,7 +2,6 @@
   "name": "react-counter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cianhub.github.io/react-typed-contexts/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
