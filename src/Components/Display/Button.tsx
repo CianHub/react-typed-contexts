@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface Props {
   symbol: string;
@@ -6,7 +6,9 @@ interface Props {
 }
 
 const Button: React.FC<Props> = ({ symbol, setCount }) => {
+  console.log(`${symbol} Button Rendered`);
+
   return <button onClick={() => setCount()}>{symbol}</button>;
 };
 
-export default Button;
+export default memo(Button);
