@@ -1,32 +1,58 @@
-import React, { useCallback, useContext } from 'react';
-import { DEC_COUNTER, INC_COUNTER } from '../../Context/CounterActions';
+import React, { CSSProperties, useCallback, useContext, useRef } from 'react';
+import {
+  DEC_COUNTER,
+  INC_COUNTER,
+  LIGHT_MODE,
+  DARK_MODE,
+} from '../../Context/CounterActions';
 import { CounterContext } from '../../Context/CounterContext';
+import { Theme } from '../../Context/CounterState';
 import Button from '../Display/Button';
 import Count from '../Display/Count';
 
+const bg = (theme: Theme): CSSProperties =>
+  theme === 'LIGHT'
+    ? { backgroundColor: 'white', color: 'black' }
+    : { backgroundColor: 'black', color: 'white' };
+
 const CounterContainer: React.FC = () => {
   const {
-    state: { count },
+    state: { count, theme },
     dispatch,
   } = useContext(CounterContext);
 
+  const updateLightTheme = useCallback(
+    () => dispatch({ type: LIGHT_MODE, payload: { count, theme: 'LIGHT' } }),
+    []
+  );
+
+  const updateDarkTheme = useCallback(
+    () => dispatch({ type: DARK_MODE, payload: { count, theme: 'DARK' } }),
+    []
+  );
+
+  const updateTheme = theme === 'LIGHT' ? updateDarkTheme : updateLightTheme;
+
   const memoIncCounter = useCallback(
-    () => dispatch({ type: INC_COUNTER, payload: 1 }),
+    () => dispatch({ type: INC_COUNTER, payload: { count: 1, theme } }),
     []
   );
 
   const memoDecCounter = useCallback(
-    () => dispatch({ type: DEC_COUNTER, payload: 1 }),
+    () => dispatch({ type: DEC_COUNTER, payload: { count: 1, theme } }),
     []
   );
 
   console.log('Container Rendered');
+  console.log(theme, count);
 
   return (
-    <div>
+    <div style={bg(theme)}>
+      <h1>{theme}</h1>
       <Count count={count} />
-      <Button symbol="+" setCount={memoIncCounter} />
-      <Button symbol="-" setCount={memoDecCounter} />
+      <Button symbol="Update Theme" onClick={updateTheme} />
+      <Button symbol="+" onClick={memoIncCounter} />
+      <Button symbol="-" onClick={memoDecCounter} />
     </div>
   );
 };

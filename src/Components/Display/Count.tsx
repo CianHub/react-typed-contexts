@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface Props {
   count: number;
@@ -9,4 +9,4 @@ const Count: React.FC<Props> = ({ count }) => {
   return <h2>{count}</h2>;
 };
 
-export default Count;
+export default memo(Count);
