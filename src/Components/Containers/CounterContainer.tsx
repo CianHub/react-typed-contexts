@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useContext, useRef } from 'react';
+import React, { CSSProperties, useCallback, useContext } from 'react';
 import {
   DEC_COUNTER,
   INC_COUNTER,
@@ -27,19 +27,19 @@ const CounterContainer: React.FC = () => {
   );
 
   const updateDarkTheme = useCallback(
-    () => dispatch({ type: DARK_MODE, payload: { count, theme: 'DARK' } }),
+    () => dispatch({ type: DARK_MODE, payload: { theme: 'DARK' } }),
     []
   );
 
   const updateTheme = theme === 'LIGHT' ? updateDarkTheme : updateLightTheme;
 
   const memoIncCounter = useCallback(
-    () => dispatch({ type: INC_COUNTER, payload: { count: 1, theme } }),
+    () => dispatch({ type: INC_COUNTER, payload: { count: 1 } }),
     []
   );
 
   const memoDecCounter = useCallback(
-    () => dispatch({ type: DEC_COUNTER, payload: { count: 1, theme } }),
+    () => dispatch({ type: DEC_COUNTER, payload: { count: 1 } }),
     []
   );
 

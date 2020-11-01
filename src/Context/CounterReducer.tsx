@@ -1,9 +1,11 @@
 import {
   Action,
-  LIGHT_MODE,
+  ActionWithCount,
+  ActionWithTheme,
   DARK_MODE,
   DEC_COUNTER,
   INC_COUNTER,
+  LIGHT_MODE,
 } from './CounterActions';
 import { CounterState, initialState } from './CounterState';
 
@@ -13,13 +15,20 @@ export const counterReducer: React.Reducer<CounterState, Action> = (
 ) => {
   switch (action.type) {
     case INC_COUNTER:
-      return { ...state, count: state.count + action.payload.count };
+      const incAction = action as ActionWithCount;
+      return { ...state, count: state.count + incAction.payload.count };
+
     case DEC_COUNTER:
-      return { ...state, count: state.count - action.payload.count };
+      const decAction = action as ActionWithCount;
+      return { ...state, count: state.count - decAction.payload.count };
+
     case LIGHT_MODE:
-      return { ...state, theme: action.payload.theme };
+      const lightAction = action as ActionWithTheme;
+      return { ...state, theme: lightAction.payload.theme };
+
     case DARK_MODE:
-      return { ...state, theme: action.payload.theme };
+      const darkAction = action as ActionWithTheme;
+      return { ...state, theme: darkAction.payload.theme };
 
     default:
       return state;

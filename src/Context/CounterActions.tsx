@@ -13,5 +13,15 @@ export type ACTION_TYPES =
 
 export interface Action {
   type: ACTION_TYPES;
-  payload: { count: number; theme: Theme };
+  payload: { count?: number; theme?: Theme };
 }
+
+export type ActionWithCount = {
+  type: ACTION_TYPES;
+  payload: { count: number };
+};
+
+export type ActionWithTheme = {
+  type: ACTION_TYPES;
+  payload: { theme: Theme };
+};
