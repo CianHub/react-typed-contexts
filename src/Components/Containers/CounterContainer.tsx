@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CounterContext } from '../../Context/CounterContext';
+import Button from '../Display/Button';
 
 interface Props {}
 
 const CounterContainer: React.FC<Props> = () => {
-  return <div>CounterContainer </div>;
+  const { state, dispatch } = useContext(CounterContext);
+
+  //const incrementCount = () => dispatch()
+
+  return (
+    <div>
+      <Button symbol="+" setCount={dispatch}></Button>{' '}
+    </div>
+  );
 };
 
 export default CounterContainer;
