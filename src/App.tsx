@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import CounterContainer from './Components/Containers/CounterContainer';
-import { CounterContextProvider } from './Context/CounterContext';
+import { CounterContextProvider } from './Context/CounterContextProvider';
 
 function App() {
   return (
