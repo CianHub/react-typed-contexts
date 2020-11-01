@@ -22,35 +22,35 @@ const CounterContainer: React.FC = () => {
   } = useContext(CounterContext);
 
   const updateLightTheme = useCallback(
-    () => dispatch({ type: LIGHT_MODE, payload: { count, theme: 'LIGHT' } }),
-    []
+    () => dispatch({ type: LIGHT_MODE, payload: { theme: 'LIGHT' } }),
+    [dispatch]
   );
 
   const updateDarkTheme = useCallback(
     () => dispatch({ type: DARK_MODE, payload: { theme: 'DARK' } }),
-    []
+    [dispatch]
   );
-
-  const updateTheme = theme === 'LIGHT' ? updateDarkTheme : updateLightTheme;
 
   const memoIncCounter = useCallback(
     () => dispatch({ type: INC_COUNTER, payload: { count: 1 } }),
-    []
+    [dispatch]
   );
 
   const memoDecCounter = useCallback(
     () => dispatch({ type: DEC_COUNTER, payload: { count: 1 } }),
-    []
+    [dispatch]
   );
 
   console.log('Container Rendered');
-  console.log(theme, count);
 
   return (
     <div style={bg(theme)}>
       <h1>{theme}</h1>
       <Count count={count} />
-      <Button symbol="Update Theme" onClick={updateTheme} />
+      <Button
+        symbol="Update Theme"
+        onClick={theme === 'LIGHT' ? updateDarkTheme : updateLightTheme}
+      />
       <Button symbol="+" onClick={memoIncCounter} />
       <Button symbol="-" onClick={memoDecCounter} />
     </div>
