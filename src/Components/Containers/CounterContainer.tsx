@@ -11,9 +11,11 @@ const CounterContainer: React.FC<Props> = () => {
     dispatch,
   } = useContext(CounterContext);
 
-  const incrementCount = () => dispatch({ type: INC_COUNTER, payload: 1 });
+  const incrementCount = (): void =>
+    dispatch({ type: INC_COUNTER, payload: 1 });
 
-  const decrementCount = () => dispatch({ type: DEC_COUNTER, payload: 1 });
+  const decrementCount = (): void =>
+    dispatch({ type: DEC_COUNTER, payload: 1 });
 
   return (
     <div>
